@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: make build
+    - name: Test Docker image
+      run: make test
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+    - name: Login to Docker Registry
+      run: docker login -u "${{ secrets.REGISTRY_USERNAME }}" -p "${{ secrets.REGISTRY_PASSWORD }}" "${{ secrets.REGISTRY_HOST }}"
+    - name: Install semantic-release and extra plugins
+      run: |
+        npm install --save-dev \
+          @semantic-release/changelog \
+          @semantic-release/commit-analyzer \
+          @semantic-release/git \
+          @semantic-release/github \
+          @semantic-release/release-notes-generator \
+          @semantic-release/exec \
+          semantic-release
+    - name: Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      run: npx semantic-release
