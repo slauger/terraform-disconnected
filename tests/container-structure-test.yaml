@@ -1,0 +1,9 @@
+---
+schemaVersion: "2.0.0"
+
+commandTests:
+  - name: "terraform exists"
+    command: "terraform"
+    args: ["version"]
+  - name: "terragrunt exists"
+    command: "terragrunt"
