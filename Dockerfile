@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi8/ubi@sha256:edb918518a6300897740a81a407fc7ca391d84b8c45830632f29f5282ee071a3 AS builder
 
 # renovate: datasource=github-tags depName=hashicorp/terraform
-ARG TERRAFORM_VERSION=1.1.9
+ARG TERRAFORM_VERSION=1.4.5
 
 # renovate: datasource=github-tags depName=gruntwork-io/terragrunt
 ARG TERRAGRUNT_VERSION=0.37.1
