@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi@sha256:e3311058176628ad7f0f288f894ed2afef61be77ad01d53d5b69bca0f6b6cec1 AS builder
+FROM registry.access.redhat.com/ubi8/ubi@sha256:bce7e9f69fb7d4533447232478fd825811c760288f87a35699f9c8f030f2c1a6 AS builder
 
 # renovate: datasource=github-tags depName=hashicorp/terraform
 ARG TERRAFORM_VERSION=1.4.5
@@ -29,7 +29,7 @@ COPY providers.tf providers.tf
 RUN mkdir /usr/local/terraform-providers && \
     terraform providers mirror -platform=linux_amd64 /usr/local/terraform-providers
 
-FROM registry.access.redhat.com/ubi8/ubi@sha256:e3311058176628ad7f0f288f894ed2afef61be77ad01d53d5b69bca0f6b6cec1
+FROM registry.access.redhat.com/ubi8/ubi@sha256:bce7e9f69fb7d4533447232478fd825811c760288f87a35699f9c8f030f2c1a6
 
 ENV TF_CLI_ARGS_init="-plugin-dir=/usr/local/terraform-providers"
 
