@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi8/ubi@sha256:e3311058176628ad7f0f288f894ed2af
 ARG TERRAFORM_VERSION=1.4.5
 
 # renovate: datasource=github-tags depName=gruntwork-io/terragrunt
-ARG TERRAGRUNT_VERSION=0.37.4
+ARG TERRAGRUNT_VERSION=0.55.20
 
 RUN yum install -y unzip && \
     yum clean all && \
